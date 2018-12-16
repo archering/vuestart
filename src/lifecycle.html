@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 基础练习</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <p>
+        钩子函数只能处理之前或者之后的事情，不能处理“当”的事情。看用词，befoeXXX   xxxed
+    </p>
+    <div id="abc">
+        <h3>{{desc}}</h3>
+        <h4>{{title}}</h4>
+        <button @click="triggerUpdate()">点击更新文字</button>
+        <button @click="destroy()">点击vm.$destroy()</button>
+    </div>
+
+     <script src="./js/life.js"></script>
+</body>
+</html>

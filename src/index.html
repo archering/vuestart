@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 基础练习</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="abc1">
+         <h2>{{hello}}</h2>
+         <h3>[[greet]]</h3>
+    </div>
+    <hr>
+    <div id="abc2">
+        <ul>
+            <li v-for="i in 3">{{i}}</li>
+        </ul>
+        <ul>
+            <li v-for="c in arr">{{c}}</li>
+        </ul>
+        <div>
+            <a :href="url">hao123</a>
+        </div>
+    </div>
+    <hr>
+    <div id="abc3">
+        <ul>
+            <li v-for="c in arr">
+                <input type="checkbox" v-model="selected" :value="c">{{c}}
+            </li>
+        </ul>
+        <div v-if="selected && selected.length==1">
+            you like {{selected.join("")}}
+        </div>
+        <div v-else-if="selected && selected.length>1">
+            you selected  {{selected.join(",")}}
+        </div>
+        <div v-else>
+            please select  one 
+        </div>
+    </div>
+    <hr>
+     <div id="abc4">
+        <h3>click  event.modifiers  prevent  stop</h3>
+        <div>
+            <button v-on:click="showalert">点击</button>
+        </div>
+        <div v-if="!state">
+            <form action="">
+                name:   <input type="text" v-model="name">
+                <button type="submit" @click.prevent="submit($event)">提交</button>
+            </form>
+        </div>
+        <div v-if="state">
+            you name is : {{name}}
+            <button @click="logout()">logout</button>
+        </div>
+     </div>
+     <hr>
+     <div id="abc5">
+         <h4>
+             :class  (true,false  决定了这个类名是否使用) style  
+         </h4>
+         <button @click="change()">改变</button>
+        <div :class="{className1:hot,className2:code}">
+            this is china
+        </div>
+        <div :class="cla"> not me</div>
+       <div :class=[cla,cla2]> not my type</div>
+
+       <div :style="{'fontSize':fontSize+'px'}">
+           <input type="text" v-model="fontSize"><span>hello 你好</span>
+           <div :style="style1">
+               <span>你是谁</span>
+           </div>
+       </div>
+       <div :style="[style1,style2]">
+            这里是 style   数组
+       </div>
+     </div>
+     <hr>
+     <div id="abc6">
+         <h4>watch  && computed  && methods</h4>
+         <p>
+             computed 是一种特殊的属性 
+         </p>
+        <div>
+            <input type="text" v-model="fst"> + <input type="text" v-model="sec"> = <input  v-if="sec && fst" type="text" v-model="sum">
+        </div>
+        <div>
+                <input type="text" v-model="trd"> + <input type="text" v-model="sec"> = <input  v-if="sec && trd" type="text" v-model="sum2()">
+            </div>
+            <div>
+                请输入并查看<input type="text" v-model="input">
+                <div v-if="list && list.length">
+                   <ul>
+                       <li v-for="item in list">
+                           {{item}}
+                       </li>
+                   </ul>
+                </div>
+                <div v-else>
+                        请 输入  movie  或者 music 查看
+                </div>
+            </div>                    
+     </div>
+     <script src="./js/index.js"></script>
+</body>
+</html>

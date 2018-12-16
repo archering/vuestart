@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 基础练习-component</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        .left-me{
+            position: relative;
+            display: inline-block;
+            width: "500px";
+        }
+    </style>
+</head>
+<body>
+    <h4>global， local  components  props, slot   named slot, scoped slot</h4>
+    <p>
+        组件component 类似于angular里面孤立的作用域的directive ，全局的组件或是本地的组件都是孤立作用域的，都有自己的data，
+        global component 和 local component 都是孤立作用域的；
+        Vue 实例类似 scope ，component 要使用new Vue() 定义的data或者方法或者computed ，需要通过一个特殊变量数组props=[]
+    . 
+    </p>
+    <p>
+        global-compoennt 和 local-compoent 不同有两处。
+        1， 定义的地方不同， global-component 通过Vue的静态方法Vue.component() 定义
+            local-component 通过 Vue的初始化参数  new Vue({ components
+            :{    } }) 来定义
+        2, 使用的地方不同， global-component 可以mount 到任意的节点， local-component只能mount到定义它的节点
+
+    </p>
+    <p>
+        &lt;slot name='123'&gt; &lt;/slot&gt;
+        无命名的slot  会重复使用其中没命名的 “插入”。
+        scope的slot 需要预先绑定scope 属性，指向一个接收外部传入值的变量 一般是props
+    </p>
+    <div id="abc">
+        <g-component :array="array" :warning="warning" :papa-alert="papaAlert" :papa-alert-withparam="papaAlertWithparam">
+            <div slot="begin">这里是开始的slot  name begin</div>
+            <div slot="end">这里是结束的slot name  end </div>
+            <template scope="props">
+                <div>
+                    <i>{{props.warning}}</i>
+                </div>
+            </template>
+        </g-component>
+    </div>
+<hr>
+
+    <div id="abc2">
+        <h4>
+            语义化标签 &lt;sec-list&gt;&lt;/sec-list&gt;， 和 &lt;component is="sec-list"&gt;&lt;/component&gt;  是一样的
+            当然 is 也可以绑定变量，  :is= "abc"   只要abc的值是 sec-list就行
+        </h4>
+        <!-- <sec-list></sec-list>    -->
+        <component is="sec-list" :array="array" :warning="warning" :papa-alert="papaAlert" :papa-alert-withparam="papaAlertWithparam">
+                <div slot="begin">这里是开始的slot  name begin</div>
+                <div slot="end">这里是结束的slot name  end </div>
+                <template slot-scope="props">
+                        <div>
+                            <i>{{props.warning}}</i>
+                        </div>
+                    </template>                            
+        </component>
+    </div>
+    <hr>
+    <div id="abd">
+        
+    </div>
+
+     <script src="./js/comp.js"></script>
+</body>
+</html>
